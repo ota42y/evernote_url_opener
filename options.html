@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head><title>Evernote Opener Options</title></head>
-<style type="text/css">
-<!--
-p {line-height:1.5;}
-p span {color:red; font-weight: bold;}
--->
-</style>
+<head>
+  <title>Evernote Opener Options</title>
+  <style type="text/css">
+    <!--
+      p {line-height:1.5;}
+      p span {color:red; font-weight: bold;}
+    -->
+  </style>
+  <script src="options.js"></script>
+</head>
 <body>
 
   UserId: <input type="text" id="userId"><br />
@@ -14,13 +17,20 @@ p span {color:red; font-weight: bold;}
   <button id="save">Save</button> <span id="result"></span>
   <br />
   <br />
-  <p>UserId is evernote:///view/<span>USER_ID</span>/<span>USER_SHARD</span>/NOTE_ID/NOTE_ID/ or</p>
-  <p>https://www.evernote.com/shard/<span>USER_SHARD/</span>/WORD/<span>USER_ID</span>/NODE_ID/</p>
+  <p>
+    UserId is evernote:///view/<span>USER_ID</span>/<span>USER_SHARD</span>/NOTE_ID/NOTE_ID/ or <br />
+    https://www.evernote.com/shard/<span>USER_SHARD/</span>/WORD/<span>USER_ID</span>/NODE_ID/
+  </p>
 
-  <p>If you want to get these url, open evernote app and right click any note, <br />
-  select get note link menu.</p>
+  <p>
+    You shuld get these url and fill data. <br />
+    So, you open evernote app and right click any note, select get note link menu.
+  </p>
+  <p>
+    If you want to auto fill and save, you should paste evernote url this box.<br />
+    <input type="text" id="evernoteUrl"><br />
+    <button id="fill">Auto fill and save</button> <span id="fillResult"></span>
+  </p>
   <img src="note_link.png">
-
-  <script src="options.js"></script>
 </body>
 </html>

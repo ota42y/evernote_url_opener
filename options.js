@@ -11,10 +11,38 @@ function save_options() {
 function restore_options() {
   userId = chrome.extension.getBackgroundPage().getUserId();
   userShard = chrome.extension.getBackgroundPage().getUserShard();
-  document.getElementById("userId").value = userId;
-  document.getElementById("userShard").value = userShard;
+  fill_data(userShard, userId);
 }
 
-document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save').addEventListener('click',
-save_options);
+function fill_data(userShard, userId){
+  document.getElementById("userShard").value = userShard;
+  document.getElementById("userId").value = userId;
+}
+
+// when evernote url exist, pase id and fill text box and save.
+function auto_fill(){
+  var url = document.getElementById('evernoteUrl').value;
+
+  m = url.match(/^https:\/\/www.evernote.com\/shard\/(.*)\/.*\/(.*)\/(.*)\//)
+  if(m && m[1] && m[2]){
+    fill_data(m[1], m[2])
+    save_options();
+    document.getElementById("fillResult").innerText = "success";
+    return;
+  }
+
+  m = url.match(/^https:\/\/www.evernote.com\/shard\/(.*)\/.*\/(.*)\/(.*)\//)
+  if(m && m[1] && m[2]){
+    fill_data(m[1], m[2])
+    save_options();
+    document.getElementById("fillResult").innerText = "success";
+    return;
+  }
+  document.getElementById("fillResult").innerText = "not set url";
+}
+
+window.addEventListener("DOMContentLoaded", function(){
+  restore_options();
+  document.getElementById('save').addEventListener('click',save_options);
+  document.getElementById('fill').addEventListener('click',auto_fill);
+}, false);
